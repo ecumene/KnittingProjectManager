@@ -40,7 +40,16 @@ export const SignupModal = ({
     });
   };
   const navigate = useNavigate();
-  const onSubmit = () => {
+  const onSubmit = async (data) => {
+    const response = await fetch("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const payload = await response.json();
+    console.log(payload);
     setIsSignupOpen(false);
     navigate("/KnitAndPearl/ViewProject", {});
   };
